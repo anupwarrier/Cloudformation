@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "PDBA RDS CF Template",
+	"Description": "RDS CF Template",
 
 	"Parameters": {
 		"DBUser": {
@@ -61,11 +61,11 @@
 			"Type": "String"
 		},
 		"Tag1": {
-			"Description": "Tag-CostCenter",
+			"Description": "Tag-OU",
 			"Type": "String"
 		},
 		"Tag2": {
-			"Description": "Tag-AssetProtectionLevel",
+			"Description": "Tag-XYZ",
 			"Type": "String"
 		},
 		"Tag3": {
