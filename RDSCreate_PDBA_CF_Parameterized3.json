@@ -1,0 +1,162 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "PDBA RDS CF Template",
+
+	"Parameters": {
+		"DBUser": {
+			"NoEcho": "true",
+			"Description": "Enter the database admin account username",
+			"Type": "String",
+			"MinLength": "1",
+			"MaxLength": "16",
+			"AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+			"ConstraintDescription": "Must begin with a letter and contain only alphanumeric characters."
+		},
+		"DBPassword": {
+			"NoEcho": "true",
+			"Description": "Enter the database admin account password",
+			"Type": "String",
+			"MinLength": "8",
+			"MaxLength": "41",
+			"AllowedPattern": "[a-zA-Z0-9]*",
+			"ConstraintDescription": "must contain only alphanumeric characters."
+		},
+
+		"DBInstanceId": {
+			"Description": "Enter the database instance identifier(Ex:MyRDSInstance1)",
+			"Type": "String"
+		},
+
+		"DBSize": {
+			"Description": "Enter the database size(In GB)",
+			"Type": "String"
+		},
+
+		"DBInstanceType": {
+			"Description": "Enter the RDS Instance Type(Ex:db.t2.small)",
+			"Type": "String"
+		},
+		"DBSubnetGrpName": {
+			"Description": "Enter the DB Subnet GroupName(Find it under the Subnet Groups section of RDS)",
+			"Type": "String"
+		},
+		"DBEngine": {
+			"Description": "Enter the DB Engine(Ex:aurora,mariadb,mysql,postgres,sqlserver-ee,sqlserver-se)",
+			"Type": "String"
+		},
+		"DefaultPort": {
+			"Description": "Enter the port(Ex:SQL-1433,PostgreSQL-5432,MySQL/Aurora/MariaDB-3306)",
+			"Type": "String"
+		},
+		"Licensing": {
+			"Description": "Enter the LicenseModel(Ex:license-included | bring-your-own-license | general-public-license| postgresql-license)",
+			"Type": "String"
+		},
+		"MultiAZDeploy": {
+			"Description": "Enter True or False for MultiAZ",
+			"Type": "String"
+		},
+		"Storage": {
+			"Description": "Enter the storage type(Ex:standard | gp2 | io1)",
+			"Type": "String"
+		},
+		"Tag1": {
+			"Description": "Tag-CostCenter",
+			"Type": "String"
+		},
+		"Tag2": {
+			"Description": "Tag-AssetProtectionLevel",
+			"Type": "String"
+		},
+		"Tag3": {
+			"Description": "Tag-Team",
+			"Type": "String"
+		},
+		"Tag4": {
+			"Description": "Tag-Application",
+			"Type": "String"
+		},
+		"Tag5": {
+			"Description": "Tag-Owner",
+			"Type": "String"
+		},
+		"Tag6": {
+			"Description": "Tag-Email",
+			"Type": "String"
+		}
+	},
+
+	"Resources": {
+
+		"DBInstance": {
+			"Type": "AWS::RDS::DBInstance",
+			"Properties": {
+				"AllocatedStorage": {
+					"Ref": "DBSize"
+				},
+				"AllowMajorVersionUpgrade": "false",
+				"AutoMinorVersionUpgrade": "true",
+				"BackupRetentionPeriod": "30",
+				"DBInstanceClass": {
+					"Ref": "DBInstanceType"
+				},
+				"DBInstanceIdentifier": {
+					"Ref": "DBInstanceId"
+				},
+				"DBSubnetGroupName": {
+					"Ref": "DBSubnetGrpName"
+				},
+				"Engine": {
+					"Ref": "DBEngine"
+				},
+				"LicenseModel": {
+					"Ref": "Licensing"
+				},
+				"MasterUsername": {
+					"Ref": "DBUser"
+				},
+				"MasterUserPassword": {
+					"Ref": "DBPassword"
+				},
+				"MultiAZ": {
+					"Ref": "MultiAZDeploy"
+				},
+				"PubliclyAccessible": "false",
+				"Port": {
+					"Ref": "DefaultPort"
+				},
+				"StorageType": {
+					"Ref": "Storage"
+				},
+				"Tags": [{
+						"Key": "CostCenter",
+						"Value": {"Ref": "Tag1"}
+					},
+
+					{
+						"Key": "AssetProtectionLevel",
+						"Value": {"Ref": "Tag2"}
+					},
+					{
+						"Key": "Team",
+						"Value": {"Ref": "Tag3"}
+					},
+					{
+						"Key": "Application",
+						"Value": {"Ref": "Tag4"}
+					},
+					{
+						"Key": "Owner",
+						"Value": {"Ref": "Tag5"}
+					},
+					{
+						"Key": "Email",
+						"Value": {"Ref": "Tag6"}
+					}
+				]
+			}
+		}
+
+
+	}
+}
