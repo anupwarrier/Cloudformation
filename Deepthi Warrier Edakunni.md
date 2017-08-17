@@ -1,4 +1,4 @@
-DEEPTHI WARRIER EDAKUNNI {#deepthi-warrier-edakunni .ListParagraph}
+DEEPTHI WARRIER EDAKUNNI
 ========================
 
 > **Location:** Greater Seattle Area
