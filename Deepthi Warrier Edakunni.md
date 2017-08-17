@@ -61,7 +61,7 @@ towards the project.
 >
 > Star Performer for annual performance reviews.
 
-***PROJECTS ***
+**PROJECTS **
 
 **Volunteer: King County Library Systems June 2017 – Till Date**
 
